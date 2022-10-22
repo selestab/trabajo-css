@@ -1,0 +1,291 @@
+/* 
+Comentario en CSS
+
+Regla CSS consta de dos partes 
+    1) el selector 
+    2) Bloque de declaraciones:{
+        atributo: valor;
+        atributo-de-mas-dos-palabras: otro-valor;
+    } 
+    */
+
+/* manera de llamo hojas de estilo dentro de otra, pero es una mala practica ya que es una etiqueta bloqueante a la hora que el navegador lee esta instruccion. no es recomendado usarla*/
+@import url(otra-hoja.css);
+
+h1{
+    color: orangered;
+    background-color: black;
+
+}
+
+/* Links de referencia y documentacion hora 1:17 min video */
+
+
+/* 
+Selectores Basicos
+    1) Etiquetas - son elementos html
+    2) Identificadores - atributo id - #
+    3) Clases - atributo class - . 
+*/
+p {
+    color: midnightblue;
+}
+
+/* Dar estilos con Id se considera una mala practica */
+#parrafo-dos {
+    background-color:  skyblue;
+}
+
+/* DAr estilos con clases nos permite reutilizar nuestro codigo CSS */
+
+.bg-skyblue{
+    background-color: skyblue;
+}
+
+.bg-steelblue{
+    background-color: steelblue;
+}
+
+.text-20{
+    font-size: 20px;
+}
+
+.text-32{
+    font-size: 32px;
+}
+
+.text-white{
+    color: white
+}
+
+.hijos-directos >  li{
+    background-color: thistle;
+}
+
+/* espacio en blanco, es aplicado a hijos descendientes(a los que esten debajo de este atributo */
+.hijos-descendientes b {
+    background-color: thistle;
+}
+
+/* Los selectores de hermanos va a aplicar a los elementos que son hermanos y que esten por debajo del elemento de referencia ( ~ selector de hermanos)*/
+
+.hermanos-general ~ li {
+    background-color: thistle;
+}
+.hermanos-adyacentes + li {
+    background-color: thistle;
+}
+/* Selectores de atributo */
+.selectores-atributos a[href] {
+    color:orangered;
+}
+.selectores-atributos a[target="_blank"]{
+    font-weight: bold;
+}
+/* el comodin del * aplica el estilo si tiene el texto en cuestion en cualquier parte*/
+.selectores-atributos a[href*="jonmircha"] {
+    font-size: 24px;
+}
+
+/* El comodin del ^ (curcunflejo) aplica estilo si contiene el texto en cuestion al inicio*/
+.selectores-atributos a[href^="http://"]{
+    text-decoration: none;
+}
+
+/* El comodin del $ aplica estilo si contiene el texto en cuestion al final*/
+.selectores-atributos a[href$=".com"]{
+    background-color: black;
+}
+
+
+/* El comodin del ~ aplica estilo si contiene el texto en cuestion en una linea separada por espacios*/
+.selectores-atributos a[class~="cursos"]{
+    background-color: midnightblue;
+}
+
+/* El comodin del | (| pai) aplica estilo si contiene el texto en cuestion en una linea separada por espacios y que despues del texto en cuestion venga un guion medio - */
+.selectores-atributos a[class|="menu"]{
+    font-style: italic;
+}
+
+/* Selector universal, si coloco directamente el asterisco, sin definirle donde sera aplicado el tipo de fuente.... este lo aplicara a todo el documento...pero si le defino que solo se aplique a la class que diga selector universal , solo sera aplicado a este */
+*{
+    font-family: sans-serif;
+}
+
+.selector-universal {
+    font-size: 24px
+}
+
+/* 
+Pseudoclases - Dan estilos dependiendo del contexto, posicion o estado del elemento
+https://developer.mozilla.org/es/docs/web/CSS/pseudoclases
+*/
+
+.form-pseudoclases *:required {
+    border-color: yellow;
+}
+
+.form-pseudoclases *:valid{
+    border-color: green;
+}
+
+.form-pseudoclases *:invalid{
+    border-color: red;
+}
+
+.form-pseudoclases *:focus{
+    background-color: skyblue;
+}
+
+.form-pseudoclases *:disabled{
+    background-color: pink;
+}
+
+/* 
+hay una gerarquia en el orden de como se tienen que definir los estilos 
+ej: la pseudoclse de visited tiene que ir arriba para que no inhabilite el estado hover, este al ser interatico debe estar al final, este seria el orden:
+:link
+:active
+:visited
+:hover
+*/
+
+.menu-pseudoclases a:visited {
+    color: olive
+}
+
+.menu-pseudoclases a:hover{
+    color:orange
+}
+
+.p-pseudoclases:hover {
+    font-size: 20px;
+}
+
+#temario-css:target {
+    background-color: lightgreen;
+}
+
+.lista-pseudoclases li:first-child {
+  color: green; 
+}
+
+.lista-pseudoclases li:last-child {
+  color: violet;  
+}
+
+.lista-pseudoclases li:nth-child(3) {
+  color: navy;
+}
+
+.lista-pseudoclases li:nth-child(4n) {
+  font-size: 20px;
+}
+
+.lista-pseudoclases li:nth-child(3n + 1) {
+  font-weight: bold;
+}
+
+.lista-pseudoclases li:nth-child(even) {
+  background-color:yellow;
+}
+
+.lista-pseudoclases li:nth-child(odd) {
+  background-color: orange;
+}
+
+
+.articulo-pseudoclases p:first-of-type  {
+    background-color: pink;
+}
+
+.articulo-pseudoclases p:last-of-type  {
+    background-color: violet;
+}
+
+.articulo-pseudoclases p:nth-of-type(3)  {
+    background-color: fuchsia;
+}
+
+/* con esta pseudoclases le estamos diciendo aplica los estilos excepto a lo que este en el (), si necesito colocar varios en el parentices los separo por comas.
+ */
+.articulo-pseudoclases *:not(p) {
+    background-color: beige;
+}
+
+
+/* 
+los pseudoelementos -Dan estilos a partes especificas de un elemento, se usa el  :: para diferenciarlos de las pseudoclases.
+https://developer.mozilla.org/es/docs/web/CSS/pseusoelementos
+ */
+
+.saga-geminis::before {
+    content: "🤼";
+}
+
+.saga-geminis::after {
+    content: "♊";
+}
+
+.saga-precio::before {
+    content: "$";
+    font-weight: bold ;
+}
+
+.saga-precio::after {
+    content: "USD";
+    font-weight: bold ;
+}
+
+.p-pseudoelemetos::first-letter {
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.p-pseudoelemetos::first-line {
+    color:coral 
+    
+}
+
+.p-pseudoelemetos::selection {
+    color: greenyellow;
+    background-color: black;
+   
+}
+
+.input-pseudoelemetos::placeholder {
+    color: green;
+}
+
+/* Agrupar Selectores (,) la coma nos va a servir como agrupador para cuando tengamos que aplicar cierta regla a diferentes elementos de nuestro  html.
+asi es como podemos agrupar diferentes estilos de css en nuestro css   */
+.form-agrupar-selectores input[type="text"],
+.form-agrupar-selectores input[type="email"],
+.form-agrupar-selectores textarea {
+    border-color: yellow;
+    border-width: 2px;
+    border-style: dashed;
+    background-color: black;
+    font-size: 20px;
+    display: block;
+    width: 300px;
+}
+
+/* 
+El Algoritmo de CSS: Es la forma en que el navegador aplica los estilos al documento HTML- Es vital entender este concepto, para que entiendas como se aplica y en algunas ocaciones  se sobreescriben las reglas CSS.
+1). La Cascada
+2). La Especificidad
+3). La Herencia
+*/
+
+
+
+
+
+
+
+
+
+
+
